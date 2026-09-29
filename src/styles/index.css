@@ -156,3 +156,15 @@ dl { font-size: 15px; }
 .trinks-recovery button{background:none;border:0;cursor:pointer;padding:6px 0}
 .trinks-external{margin-top:15px;text-decoration:underline;text-underline-offset:4px}
 @media(max-width:600px){.trinks-launch{padding:20px 15px}.trinks-agenda .service-agenda{height:560px}}
+
+.booking-professionals{border:0;padding:0;margin:26px 0;min-width:0}
+.professional-choices{display:grid;gap:10px}
+.professional-choice{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #c9c5b9;background:#faf9f6;cursor:pointer;min-height:70px}
+.professional-choice.selected{border:2px solid #8c6624;padding:11px;background:#fffdf6}
+.professional-choice input{width:17px;height:17px;accent-color:#896326;flex-shrink:0}
+.professional-choice img{border-radius:50%;object-fit:cover;flex-shrink:0}
+.professional-choice strong{font-size:15px;display:block}
+.professional-choice small{font-size:12px;display:block;margin-top:4px;color:#575a51}
+.professional-help{font-size:12px;color:#575a51;margin-top:12px;line-height:1.7}
+.reception-selection{display:flex;align-items:center;gap:12px;padding:16px;background:#eeece5;border:1px solid #d8d2c4;font-size:14px;line-height:1.8;margin:20px 0}
+.reception-selection svg{color:var(--gold);flex-shrink:0}

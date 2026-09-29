@@ -3,14 +3,10 @@ import { ArrowUpRight, Menu, X, Scissors, Sparkles, Heart, MapPin, Clock, Phone,
 import { siteData } from './data/siteData';
 import SocialContact from './components/SocialContact';
 import Booking from './components/Booking';
-import gustavo from '../assets/team/gustavo.jpg';
-import matheus from '../assets/team/matheus.jpg';
-import alan from '../assets/team/alan.jpg';
-import edilene from '../assets/team/edilene.jpg';
+import { professionals as team } from './data/professionals';
 
 const { images, links, brand } = siteData;
 const maps = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent('Quadra 205, lote 02 loja 4, Águas Claras, Brasília, DF');
-const team = [{name:'Gustavo',role:'Barbeiro',photo:gustavo},{name:'Matheus',role:'Barbeiro',photo:matheus},{name:'Alan',role:'Barbeiro',photo:alan},{name:'Edilene',role:'Podóloga',photo:edilene}];
 const services = [
   {title:'Barbearia', label:'ESTILO & PERSONALIDADE', image:images.barberService, icon:Scissors, description:'Um cuidado que acompanha o seu estilo, do cabelo à barba.', items:['Cabelo','Barba e bigode']},
   {title:'Beleza & estética', label:'CUIDADO EM CADA DETALHE', image:images.aestheticRoom, icon:Sparkles, description:'Reserve um tempo para renovar o seu bem-estar e a sua autoestima.', items:['Estética facial','Depilação','Massagem']},
@@ -62,7 +58,3 @@ export default function App() {
   <div className="mobile-booking"><span>Um tempo para você.</span><BookingLink>Agendar<CalendarDays size={16}/></BookingLink></div>
  </>;
 }
-
-
-
-

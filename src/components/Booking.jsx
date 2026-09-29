@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CalendarDays, MessageCircle, ArrowUpRight, Check, Phone } from 'lucide-react';
 import TrinksAgenda from './TrinksAgenda';
+import { professionals } from '../data/professionals';
 import { bookingServices, receptionMessage } from '../data/bookingData';
 
 const dateKey = date => [date.getFullYear(),String(date.getMonth()+1).padStart(2,'0'),String(date.getDate()).padStart(2,'0')].join('-');
@@ -12,7 +13,7 @@ export default function Booking({selection}) {
  const [date,setDate]=useState('');
  const [time,setTime]=useState('');
  const [agendaOpen,setAgendaOpen]=useState(false);
- useEffect(()=>{if(selection){setServiceId(selection.serviceId);setProfessional(selection.professional || '');setChannel('trinks');setDate('');setTime('');}},[selection]);
+ useEffect(()=>{if(selection){setServiceId(selection.serviceId);setProfessional(selection.professional || '');setChannel(selection.professional?'whatsapp':'trinks');setDate('');setTime('');}},[selection]);
  const service=bookingServices.find(item=>item.id===serviceId) || bookingServices[0];
  const today=new Date();
  const minDate=dateKey(today);
@@ -25,7 +26,11 @@ export default function Booking({selection}) {
    <div className="booking-options">
     <label className="planner-label" htmlFor="booking-service"><span>01</span> Qual cuidado você procura?</label>
     <select id="booking-service" value={serviceId} onChange={changeService}>{['Barbearia','Beleza & estética','Cuidado dos pés','Outros'].map(category=><optgroup key={category} label={category}>{bookingServices.filter(s=>s.category===category).map(s=><option value={s.id} key={s.id}>{s.name}</option>)}</optgroup>)}</select>
-    <fieldset className="channel-options"><legend className="planner-label"><span>02</span> Como prefere continuar?</legend><label className={channel==='trinks'?'channel-choice selected':'channel-choice'}><input type="radio" name="booking-channel" value="trinks" checked={channel==='trinks'} onChange={()=>setChannel('trinks')}/><CalendarDays size={23}/><span><strong>Reservar pelo Trinks</strong><small>Dia e horário na agenda oficial</small></span></label><label className={channel==='whatsapp'?'channel-choice selected':'channel-choice'}><input type="radio" name="booking-channel" value="whatsapp" checked={channel==='whatsapp'} onChange={()=>setChannel('whatsapp')}/><MessageCircle size={23}/><span><strong>Pedir ajuda à recepção</strong><small>Informe o dia e a hora desejados</small></span></label></fieldset>
+    <fieldset className="booking-professionals"><legend className="planner-label"><span>02</span> Quem você prefere?</legend><div className="professional-choices">
+     {professionals.filter(person=>service.professionals.includes(person.name)).map(person=><label key={person.name} className={professional===person.name?'professional-choice selected':'professional-choice'}><input type="radio" name="professional-preference" value={person.name} checked={professional===person.name} onChange={()=>setProfessional(person.name)}/><img src={person.photo} alt="" width="48" height="48"/><span><strong>{person.name}</strong><small>{person.role}</small></span></label>)}
+     <label className={!professional?'professional-choice selected':'professional-choice'}><input type="radio" name="professional-preference" value="" checked={!professional} onChange={()=>setProfessional('')}/><span><strong>Sem preferência</strong><small>A recepção pode me orientar</small></span></label>
+    </div><p className="professional-help">{service.professionals.length?'A escolha acompanha sua mensagem no WhatsApp. Na agenda do Trinks, selecione o profissional novamente.':'A recepção indica o profissional adequado para este serviço.'}</p></fieldset>
+    <fieldset className="channel-options"><legend className="planner-label"><span>03</span> Como prefere continuar?</legend><label className={channel==='trinks'?'channel-choice selected':'channel-choice'}><input type="radio" name="booking-channel" value="trinks" checked={channel==='trinks'} onChange={()=>setChannel('trinks')}/><CalendarDays size={23}/><span><strong>Reservar pelo Trinks</strong><small>Dia e horário na agenda oficial</small></span></label><label className={channel==='whatsapp'?'channel-choice selected':'channel-choice'}><input type="radio" name="booking-channel" value="whatsapp" checked={channel==='whatsapp'} onChange={()=>setChannel('whatsapp')}/><MessageCircle size={23}/><span><strong>Pedir ajuda à recepção</strong><small>Informe o dia e a hora desejados</small></span></label></fieldset>
     <div className="chosen-service"><Check size={20}/><span>{service.name}</span></div>
     <p className="planner-note">Os horários disponíveis e a confirmação da reserva aparecem na agenda do Trinks.</p>
     <button className="catalog-toggle text-link" type="button" onClick={()=>{setChannel('trinks');setAgendaOpen(true)}}>Ver todos os serviços e valores <ArrowUpRight size={16}/></button>
@@ -35,7 +40,7 @@ export default function Booking({selection}) {
     <form className="reception-form" action="https://api.whatsapp.com/send/" method="get" target="_blank" rel="noopener noreferrer">
      <p className="small-label">AJUDA COM SEU AGENDAMENTO</p><h3>Qual dia e horário?</h3><p className="planner-note">Escolha uma data e informe a hora exata. A recepção consulta a disponibilidade antes de confirmar.</p>
      <label htmlFor="booking-name">Seu nome <span>(opcional)</span></label><input id="booking-name" autoComplete="given-name" maxLength={80} value={name} onChange={e=>setName(e.target.value)} placeholder="Como podemos chamar você?"/>
-     <label htmlFor="booking-professional">Preferência de profissional</label><select id="booking-professional" value={professional} onChange={e=>setProfessional(e.target.value)}><option value="">Sem preferência</option>{service.professionals.map(p=><option key={p}>{p}</option>)}</select>
+     <div className="reception-selection" role="status"><Check size={18}/><span><strong>{service.name}</strong><br/>Profissional: {professional || 'Sem preferência'}</span></div>
      <fieldset className="date-choice"><legend>Dia desejado <span>(obrigatório)</span></legend><div className="quick-dates">{days.map(day=><button key={day.value} type="button" aria-pressed={date===day.value} onClick={()=>{setDate(day.value);setTime('')}}><span>{day.label}</span><strong>{day.number}</strong></button>)}</div><label htmlFor="booking-date">Escolha no calendário</label><input type="date" id="booking-date" required min={minDate} value={date} onChange={e=>{setDate(e.target.value);setTime('')}}/><p className="selected-date" role="status">{date?'Data escolhida: '+date.split('-').reverse().join('/'):'Toque em um dia acima ou abra o calendário.'}</p></fieldset>
      <label htmlFor="booking-time">Horário desejado <span>(obrigatório)</span></label><input type="time" id="booking-time" required step="60" value={time} onChange={e=>setTime(e.target.value)} aria-describedby="time-help"/><p id="time-help" className="planner-note">Informe a hora exata, por exemplo 14:30. Este pedido depende da disponibilidade; para escolher entre horários livres, use “Reservar pelo Trinks”.</p>
      <details className="message-preview"><summary>Conferir mensagem para a recepção</summary><p>{message}</p></details>
@@ -47,4 +52,3 @@ export default function Booking({selection}) {
   <a className="booking-help" href="tel:+5561992494249"><Phone size={16}/>Prefere ligar? (61) 99249-4249</a>
  </div></section>;
 }
-

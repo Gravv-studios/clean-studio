@@ -18,7 +18,7 @@ O visitante escolhe um serviço e segue por um de dois caminhos:
 
 O catálogo completo do Trinks pode ser aberto dentro da seção de agendamento usando o módulo oficial /framebusca. Se não carregar, há um link alternativo para nova aba.
 
-Não há armazenamento local de dados pessoais, envio automático de mensagens ou criação de reservas pelo site. Profissional e dia escolhidos no formulário são preferências para a recepção; não representam disponibilidade confirmada. Os cartões da equipe abrem a agenda oficial e indicam o profissional desejado. A seleção final é feita no Trinks. A recepção recebe somente uma solicitação, sem disponibilidade presumida.
+Não há armazenamento local de dados pessoais, envio automático de mensagens ou criação de reservas pelo site. Profissional e dia escolhidos no formulário são preferências para a recepção; não representam disponibilidade confirmada. Os cartões da equipe abrem o formulário da recepção com o profissional preenchido. A área de reserva também permite escolher o profissional por foto e nome; a escolha acompanha a mensagem de WhatsApp. Ao trocar o serviço, a preferência é limpa. Na agenda oficial, o visitante seleciona o profissional novamente no Trinks. A recepção recebe somente uma solicitação, sem disponibilidade presumida.
 
 Os destinos de serviços foram conferidos no catálogo público em 29/09/2026 e estão em src/data/bookingData.js. Se o estabelecimento recriar serviços no Trinks, conferir os respectivos identificadores.
 
