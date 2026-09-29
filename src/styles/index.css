@@ -168,3 +168,28 @@ dl { font-size: 15px; }
 .professional-help{font-size:12px;color:#575a51;margin-top:12px;line-height:1.7}
 .reception-selection{display:flex;align-items:center;gap:12px;padding:16px;background:#eeece5;border:1px solid #d8d2c4;font-size:14px;line-height:1.8;margin:20px 0}
 .reception-selection svg{color:var(--gold);flex-shrink:0}
+
+/* Leitura e fluxo guiado no mobile. */
+.hero-images figure{margin:0;min-width:0}
+.hero-images figcaption{display:none}
+.booking-step-target{scroll-margin-top:110px;outline:none}
+.booking-planner,.booking-options,.booking-next,.reception-form,.trinks-agenda,.date-choice{min-width:0;max-width:100%}
+.booking-frame{min-width:0;max-width:100%}
+.booking-planner input[type=date],.booking-planner input[type=time]{display:block;width:100%;min-inline-size:0;max-inline-size:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none}
+.booking-planner input::-webkit-date-and-time-value{text-align:left;min-width:0}
+.message-preview p{overflow-wrap:anywhere}
+@media(max-width:900px){.booking-step-target{scroll-margin-top:100px}}
+@media(max-width:600px){
+ .hero-copy>.button{display:flex;width:fit-content;max-width:100%;margin-inline:auto}
+ .hero-images{gap:22px}
+ .hero-images picture{display:block}
+ .hero-images picture img{width:100%;aspect-ratio:4/3;object-fit:cover}
+ .hero-images figcaption{display:block;font-size:16px;font-weight:600;line-height:1.5;color:#4a4130;padding:12px 8px;text-align:center}
+ .social-gallery figcaption{font-size:15px;line-height:1.6}
+ .coffee-photo span{font-size:18px;line-height:1.4}
+ .booking-options,.booking-next{width:100%;min-width:0}
+ .date-choice{width:100%}
+ .date-choice legend{max-width:100%;white-space:normal}
+ .quick-dates{width:100%;min-width:0}
+ .trinks-toolbar span,.trinks-external{overflow-wrap:anywhere}
+}

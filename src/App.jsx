@@ -39,7 +39,7 @@ export default function App() {
   <main id="conteudo">
    <section id="inicio" className="hero container">
     <div className="hero-copy"><Eyebrow>BARBER & BEAUTY · ÁGUAS CLARAS</Eyebrow><h1>Seu estilo.<br/>Seu cuidado.<br/><em>Seu momento.</em></h1><p className="hero-lead">Uma pausa na rotina para cuidar de você.</p><BookingLink>Reserve seu momento</BookingLink><p className="hero-signature"><span/>BELEZA TAMBÉM É BEM-ESTAR</p></div>
-    <div className="hero-images"><img src={images.heroBarbearia} alt="Atendimento de barbearia no Studio Clean" fetchpriority="high"/><img src={images.heroPes} alt="Atendimento de cuidado dos pés no Studio Clean"/></div>
+    <div className="hero-images"><figure><picture><source media="(max-width: 600px)" srcSet={images.barberService}/><img src={images.heroBarbearia} alt="Atendimento de barbearia no Studio Clean" fetchpriority="high"/></picture><figcaption>Tradição em cuidar de você.</figcaption></figure><figure><picture><source media="(max-width: 600px)" srcSet={images.footCareService}/><img src={images.heroPes} alt="Atendimento de cuidado dos pés no Studio Clean"/></picture><figcaption>Beleza em todos os detalhes.</figcaption></figure></div>
    </section>
    <div className="specialties container" aria-label="Especialidades"><span>BARBEARIA</span><i>✦</i><span>ESTÉTICA</span><i>✦</i><span>CUIDADO DOS PÉS</span><i>✦</i><span>BEM-ESTAR</span></div>
    <section id="servicos" className="section container">
