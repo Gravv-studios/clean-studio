@@ -11,3 +11,10 @@ O usuário solicitou commits automáticos ao concluir cada atualização feita n
 - Conferir o diff antes de sincronizar. Não incluir alterações de terceiros sem relação com a tarefa nem segredos, arquivos .env, node_modules, dist ou capturas temporárias.
 - Nunca declarar sincronização concluída se o push falhar. Informar o impedimento e preservar o commit local.
 - Mensagens dos commits devem descrever a mudança em português. Cada atualização concluída pode conter várias edições e um único commit.
+
+## Entrega em produção
+
+- Endereço público principal: https://clean-studio-blue.vercel.app/.
+- A Vercel está conectada à branch main deste repositório. Após enviar uma atualização, conferir o status Vercel do commit e a versão pública antes de declarar que está publicada.
+- O usuário pediu entrega na Vercel, não apenas em localhost. Usar o endereço público na resposta final. Localhost serve somente para desenvolvimento e testes.
+- Se a publicação falhar ou continuar pendente, informar isso claramente; push concluído não significa publicação concluída.

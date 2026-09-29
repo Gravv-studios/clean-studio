@@ -35,7 +35,7 @@ Documentação oficial do módulo: https://ajuda.trinks.com/tenha-o-agendamento-
 
 ## Publicação
 
-Publicar o conteúdo de dist em hospedagem estática. Nenhuma publicação foi feita nesta entrega. Após definir o domínio, configurar URL canônica e imagem social absoluta. O catálogo e as reservas continuam sob responsabilidade do Trinks.
+Publicar o conteúdo de dist em hospedagem estática. Produção: https://clean-studio-blue.vercel.app/. A Vercel publica os envios à branch main. Após definir o domínio, configurar URL canônica e imagem social absoluta. O catálogo e as reservas continuam sob responsabilidade do Trinks.
 
 
 
@@ -52,4 +52,4 @@ Ao concluir cada atualização feita pelo agente, as instruções de AGENTS.md d
 
 Para sincronizar edições manuais: `npm run sync -- "Descrição da atualização"`.
 
-O comando valida a compilação e interrompe em caso de falha ou divergência remota. Nunca usa force push. Sem alterações, não cria commit vazio. O envio ao GitHub não publica o site em um domínio automaticamente.
+O comando valida a compilação e interrompe em caso de falha ou divergência remota. Nunca usa force push. Sem alterações, não cria commit vazio. A Vercel conectada ao repositório publica a branch main automaticamente; conferir o status do deployment antes de considerar a atualização entregue.
