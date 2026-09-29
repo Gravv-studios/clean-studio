@@ -55,6 +55,6 @@ export default function App() {
    <section className="closing container"><p>BELEZA FAZ BEM. SEMPRE.</p><h2>Seu próximo momento <em>é aqui.</em></h2><BookingLink>Agendar meu momento</BookingLink></section>
   </main>
   <footer><div className="container footer-main"><a href="#inicio"><img src={images.logoHorizontal} alt={brand.name} className="brand-logo"/></a><p>Seu estilo. Seu cuidado. Seu momento.<br/>Barber & Beauty · Águas Claras, DF</p><a className="text-link" href={links.instagram} target="_blank" rel="noopener noreferrer"><Instagram size={19}/>{brand.instagramHandle}<ArrowUpRight size={16}/></a></div><nav className="container footer-links" aria-label="Navegação do rodapé"><a href="#studio">O studio</a><a href="#servicos">Serviços</a><a href="#equipe">Nossa equipe</a><a href="#agendar">Agendamento</a><a href="#galeria">Galeria e Instagram</a><a href="#localizacao">Como chegar</a><a href="#contato">Contato</a></nav><div className="container footer-bottom"><span>© {new Date().getFullYear()} Studio Clean Barber & Beauty</span><a href="#agendar">Agendar meu horário <ArrowUpRight size={13}/></a></div></footer>
-  <div className="mobile-booking"><span>Um tempo para você.</span><BookingLink>Agendar<CalendarDays size={16}/></BookingLink></div>
+  <div className="mobile-booking"><span>Seu próximo cuidado.</span><a className="button mobile-booking-action" href="#agendar"><CalendarDays size={28} aria-hidden="true"/><span>Agendar</span></a></div>
  </>;
 }

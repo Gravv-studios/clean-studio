@@ -193,3 +193,14 @@ dl { font-size: 15px; }
  .quick-dates{width:100%;min-width:0}
  .trinks-toolbar span,.trinks-external{overflow-wrap:anywhere}
 }
+
+/* Botões mais largos e calendário em destaque no mobile. */
+@media(max-width:800px){
+ .mobile-booking{gap:14px}
+ .mobile-booking>span{font-size:16px;line-height:1.35;max-width:150px}
+ .mobile-booking .mobile-booking-action{gap:10px;flex-shrink:0;font-size:14px;height:48px;padding:8px 18px}
+ .mobile-booking .mobile-booking-action>svg{display:block;width:28px;height:28px}
+}
+@media(max-width:600px){
+ .hero-copy>.button{width:100%;max-width:none;height:52px;padding-block:0}
+}
