@@ -9,3 +9,6 @@ dist/
 Thumbs.db
 asset-review.jpg
 agendamento-verificado.png
+
+.local-crm/
+dist-crm/

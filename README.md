@@ -54,17 +54,35 @@ Para sincronizar edições manuais: `npm run sync -- "Descrição da atualizaç�
 
 O comando valida a compilação e interrompe em caso de falha ou divergência remota. Nunca usa force push. Sem alterações, não cria commit vazio. A Vercel conectada ao repositório publica a branch main automaticamente; conferir o status do deployment antes de considerar a atualização entregue.
 
-## Demonstração de agenda e CRM
+## CRM local separado do site
 
-Abra `http://127.0.0.1:3000/?demo` após `npm run dev`. O mesmo modo fica disponível na publicação com `/?demo`. O site principal preserva o fluxo oficial do Trinks.
+O domínio https://clean-studio-blue.vercel.app/ serve exclusivamente o site. A antiga query `?demo` não abre mais o CRM. O build público não importa nem contém os módulos do CRM.
 
-- **Agendar:** escolha serviço, profissional, data e horário e use nome e telefone fictícios. A solicitação gera cadastro de cliente por telefone e atendimento no CRM.
-- **Agenda:** filtre por cliente, profissional, data ou situação; confirme, conclua ou cancele atendimentos. O cancelamento libera o horário.
-- **Clientes:** consulte histórico e edite observações; tudo é salvo no navegador.
-- **Conexões:** mostra o estado real de cada integração e permite restaurar os exemplos.
+- `npm run dev`: site em http://127.0.0.1:3000/.
+- `npm run dev:crm`: CRM local em http://127.0.0.1:3001/ (Node 24 ou versão compatível com node:sqlite).
+- `npm run test:crm`: testes das regras operacionais.
+- `npm run build:crm`: valida a interface separada em dist-crm; não publica o CRM e não inclui o servidor.
 
-Durações são ilustrativas. A disponibilidade considera duração, sobreposição por profissional, horário de encerramento, domingos e horários passados. Datas e horários seguem o fuso do navegador. As reservas de demonstração não são enviadas ao Trinks. Dados locais não são compartilhados entre dispositivos; esta versão não tem autenticação e deve usar exclusivamente dados fictícios. Uma única aba deve ser usada para editar a demonstração.
+O banco SQLite fica em `.local-crm/studio-clean.sqlite`, fora do Git e do build. Não apagar essa pasta. As gravações são validadas no servidor, com revisão para impedir que uma aba sobrescreva alterações de outra. O servidor só atende localhost/127.0.0.1 na porta 3001. Não expor este servidor de desenvolvimento à internet.
 
-Para operar com clientes reais: implantar backend, banco de dados, autenticação e controle de acesso; obter acesso autorizado à API Trinks e identificar estabelecimento, profissionais e serviços; definir provedor de WhatsApp e conta Google; implementar sincronização e validar conflitos e cancelamentos. Nunca colocar chaves de API no frontend.
+### Módulos implementados
 
-Referência oficial: https://trinks.readme.io/reference/introducao e https://trinks.readme.io/reference/post_v1-agendamentos.
+- Visão geral: atendimentos do dia, comandas abertas, clientes, estoque baixo e comissão pendente.
+- Agenda: cadastro e remarcação, profissionais habilitados, duração, expediente, bloqueios, conflitos, chegada, atendimento, conclusão, falta e cancelamento.
+- Clientes: cadastro, edição, busca, aniversário, origem, preferências, autorização de contato e histórico.
+- Comandas: atendimento vinculado ou venda avulsa, serviços e produtos, quantidades, desconto, recebimento, cancelamento e estorno.
+- Caixa: abertura, fundo, recebimentos, despesas, suprimento, sangria, separação de Pix/cartão/dinheiro e fechamento com diferença.
+- Serviços e equipe: preços, duração, situação, expedientes, dias, serviços habilitados e comissão editáveis.
+- Comissões: cálculo sobre serviços pagos após desconto proporcional, repasse e histórico. Produtos não geram comissão. Estorno após repasse é bloqueado para revisão manual.
+- Estoque: produtos, custo, preço, mínimo, entradas e saídas com motivo, baixa na venda e devolução no estorno.
+- Relacionamento: aniversariantes, clientes sem retorno, histórico de contatos e texto copiável; nenhum envio automático.
+- Relatórios: período, receita de comandas pagas, ticket médio, produção por profissional, situação dos atendimentos e CSV.
+- Configurações: preferências, intervalo de retorno, histórico de alterações e exportação de backup JSON. Restauração técnica, sem importador na interface.
+
+Preços e regras iniciais são exemplos autorizados pelo usuário e precisam ser conferidos pela loja. Horários usam o fuso local do computador. Caixa registra operações internamente, sem movimentar bancos. Receita não equivale a lucro; não há emissão fiscal. Uma comanda usa um profissional e uma forma de pagamento. O CRM local novo não importa automaticamente os testes do antigo localStorage.
+
+### Próxima publicação em domínio próprio
+
+Aguardar o domínio informado pelo usuário. O CRM não foi publicado. Para operação multiusuário online, implantar servidor de produção, banco persistente, autenticação, perfis de acesso, rotina de backup e HTTPS no projeto próprio. A API deste estágio é middleware do servidor local, não um backend para hospedagem estática.
+
+Trinks, Google e WhatsApp automático dependem de acessos autorizados, definição de provedor e implementação/testes de sincronização. Referência Trinks: https://trinks.readme.io/reference/introducao.
