@@ -56,7 +56,7 @@ O comando valida a compilação e interrompe em caso de falha ou divergência re
 
 ## CRM em repositório independente
 
-O CRM foi transferido para https://github.com/Gravv-studios/crm-studio-clean.git.
+O CRM foi transferido para https://github.com/Gravv-studios/crm-barbearia.git.
 
 - Pasta neste computador: `C:/Users/Marcos/Documents/workspace02/crm-studio-clean`.
 - Execução: nessa pasta, `npm ci` e `npm run dev`; endereço http://127.0.0.1:3001/.
