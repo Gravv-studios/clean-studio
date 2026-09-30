@@ -53,3 +53,18 @@ Ao concluir cada atualização feita pelo agente, as instruções de AGENTS.md d
 Para sincronizar edições manuais: `npm run sync -- "Descrição da atualização"`.
 
 O comando valida a compilação e interrompe em caso de falha ou divergência remota. Nunca usa force push. Sem alterações, não cria commit vazio. A Vercel conectada ao repositório publica a branch main automaticamente; conferir o status do deployment antes de considerar a atualização entregue.
+
+## Demonstração de agenda e CRM
+
+Abra `http://127.0.0.1:3000/?demo` após `npm run dev`. O mesmo modo fica disponível na publicação com `/?demo`. O site principal preserva o fluxo oficial do Trinks.
+
+- **Agendar:** escolha serviço, profissional, data e horário e use nome e telefone fictícios. A solicitação gera cadastro de cliente por telefone e atendimento no CRM.
+- **Agenda:** filtre por cliente, profissional, data ou situação; confirme, conclua ou cancele atendimentos. O cancelamento libera o horário.
+- **Clientes:** consulte histórico e edite observações; tudo é salvo no navegador.
+- **Conexões:** mostra o estado real de cada integração e permite restaurar os exemplos.
+
+Durações são ilustrativas. A disponibilidade considera duração, sobreposição por profissional, horário de encerramento, domingos e horários passados. Datas e horários seguem o fuso do navegador. As reservas de demonstração não são enviadas ao Trinks. Dados locais não são compartilhados entre dispositivos; esta versão não tem autenticação e deve usar exclusivamente dados fictícios. Uma única aba deve ser usada para editar a demonstração.
+
+Para operar com clientes reais: implantar backend, banco de dados, autenticação e controle de acesso; obter acesso autorizado à API Trinks e identificar estabelecimento, profissionais e serviços; definir provedor de WhatsApp e conta Google; implementar sincronização e validar conflitos e cancelamentos. Nunca colocar chaves de API no frontend.
+
+Referência oficial: https://trinks.readme.io/reference/introducao e https://trinks.readme.io/reference/post_v1-agendamentos.
