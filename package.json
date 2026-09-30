@@ -8,9 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "sync": "node scripts/sync.mjs",
-    "dev:crm": "vite --mode crm",
-    "build:crm": "vite build --mode crm",
-    "test:crm": "node --test scripts/crm.test.mjs"
+    "dev:crm": "npm --prefix ../crm-studio-clean run dev",
+    "build:crm": "npm --prefix ../crm-studio-clean run build",
+    "test:crm": "npm --prefix ../crm-studio-clean test"
   },
   "dependencies": {
     "lucide-react": "^0.475.0",

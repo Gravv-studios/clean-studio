@@ -54,35 +54,16 @@ Para sincronizar edições manuais: `npm run sync -- "Descrição da atualizaç�
 
 O comando valida a compilação e interrompe em caso de falha ou divergência remota. Nunca usa force push. Sem alterações, não cria commit vazio. A Vercel conectada ao repositório publica a branch main automaticamente; conferir o status do deployment antes de considerar a atualização entregue.
 
-## CRM local separado do site
+## CRM em repositório independente
 
-O domínio https://clean-studio-blue.vercel.app/ serve exclusivamente o site. A antiga query `?demo` não abre mais o CRM. O build público não importa nem contém os módulos do CRM.
+O CRM foi transferido para https://github.com/Gravv-studios/crm-studio-clean.git.
 
-- `npm run dev`: site em http://127.0.0.1:3000/.
-- `npm run dev:crm`: CRM local em http://127.0.0.1:3001/ (Node 24 ou versão compatível com node:sqlite).
-- `npm run test:crm`: testes das regras operacionais.
-- `npm run build:crm`: valida a interface separada em dist-crm; não publica o CRM e não inclui o servidor.
+- Pasta neste computador: `C:/Users/Marcos/Documents/workspace02/crm-studio-clean`.
+- Execução: nessa pasta, `npm ci` e `npm run dev`; endereço http://127.0.0.1:3001/.
+- Salvamento: nessa pasta, revisar o diff e executar `npm run sync -- "Descrição da atualização"` para testar, compilar, criar commit e enviar ao repositório do CRM.
+- Os atalhos dev:crm, build:crm e test:crm deste projeto delegam para a pasta irmã; ela precisa estar clonada e instalada.
+- Não editar o CRM no repositório do site. Consulte o AGENTS.md da pasta do CRM.
 
-O banco SQLite fica em `.local-crm/studio-clean.sqlite`, fora do Git e do build. Não apagar essa pasta. As gravações são validadas no servidor, com revisão para impedir que uma aba sobrescreva alterações de outra. O servidor só atende localhost/127.0.0.1 na porta 3001. Não expor este servidor de desenvolvimento à internet.
+Os dados locais existentes foram copiados e conferidos no banco da nova pasta. A pasta .local-crm antiga foi preservada como cópia anterior à migração e não deve ser usada para novos lançamentos. Bancos e backups não são enviados ao GitHub.
 
-### Módulos implementados
-
-- Visão geral: atendimentos do dia, comandas abertas, clientes, estoque baixo e comissão pendente.
-- Agenda: cadastro e remarcação, profissionais habilitados, duração, expediente, bloqueios, conflitos, chegada, atendimento, conclusão, falta e cancelamento.
-- Clientes: cadastro, edição, busca, aniversário, origem, preferências, autorização de contato e histórico.
-- Comandas: atendimento vinculado ou venda avulsa, serviços e produtos, quantidades, desconto, recebimento, cancelamento e estorno.
-- Caixa: abertura, fundo, recebimentos, despesas, suprimento, sangria, separação de Pix/cartão/dinheiro e fechamento com diferença.
-- Serviços e equipe: preços, duração, situação, expedientes, dias, serviços habilitados e comissão editáveis.
-- Comissões: cálculo sobre serviços pagos após desconto proporcional, repasse e histórico. Produtos não geram comissão. Estorno após repasse é bloqueado para revisão manual.
-- Estoque: produtos, custo, preço, mínimo, entradas e saídas com motivo, baixa na venda e devolução no estorno.
-- Relacionamento: aniversariantes, clientes sem retorno, histórico de contatos e texto copiável; nenhum envio automático.
-- Relatórios: período, receita de comandas pagas, ticket médio, produção por profissional, situação dos atendimentos e CSV.
-- Configurações: preferências, intervalo de retorno, histórico de alterações e exportação de backup JSON. Restauração técnica, sem importador na interface.
-
-Preços e regras iniciais são exemplos autorizados pelo usuário e precisam ser conferidos pela loja. Horários usam o fuso local do computador. Caixa registra operações internamente, sem movimentar bancos. Receita não equivale a lucro; não há emissão fiscal. Uma comanda usa um profissional e uma forma de pagamento. O CRM local novo não importa automaticamente os testes do antigo localStorage.
-
-### Próxima publicação em domínio próprio
-
-Aguardar o domínio informado pelo usuário. O CRM não foi publicado. Para operação multiusuário online, implantar servidor de produção, banco persistente, autenticação, perfis de acesso, rotina de backup e HTTPS no projeto próprio. A API deste estágio é middleware do servidor local, não um backend para hospedagem estática.
-
-Trinks, Google e WhatsApp automático dependem de acessos autorizados, definição de provedor e implementação/testes de sincronização. Referência Trinks: https://trinks.readme.io/reference/introducao.
+O site público continua em https://clean-studio-blue.vercel.app/. O CRM continua local e aguarda domínio, hospedagem própria e autenticação antes da publicação online.
